@@ -4,13 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { View, Text} from 'react-native'
 
 
-export type RootStackParamList = {
-  LoginScreen: undefined;
-  RegistroScreen: undefined;
-  Perfil: { correo_usuario: string };
-}
 
-const Stack = createNativeStackNavigator <RootStackParamList>()
+
+
 
 const App = () => {
   return (
