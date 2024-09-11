@@ -30,7 +30,7 @@ const App = () => {
     // </NavigationContainer>
 
     <View >
-        <Text>Hola Mundo</Text>
+        <Text>-125457 Hola ¡¡¡¡</Text>
     </View>
   )
 }
