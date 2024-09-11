@@ -1,16 +1,9 @@
+
 import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { View, Text} from 'react-native'
 
-
-// export type RootStackParamList = {
-//   LoginScreen: undefined;
-//   RegistroScreen: undefined;
-//   Perfil: { correo_usuario: string };
-// }
-
-// const Stack = createNativeStackNavigator <RootStackParamList>()
 
 const App = () => {
   return (
@@ -34,7 +27,7 @@ const App = () => {
     // </NavigationContainer>
 
     <View >
-        <Text>Hola Mundo</Text>
+        <Text>-125457 Hola ¡¡¡¡</Text>
     </View>
   )
 }
