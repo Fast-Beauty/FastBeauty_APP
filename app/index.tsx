@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
-import { View, Text} from 'react-native'
+import { View, Text } from 'react-native'
 
 
 const App = () => {
@@ -27,7 +27,7 @@ const App = () => {
     // </NavigationContainer>
 
     <View >
-        <Text>-125457 Hola ¡¡¡¡</Text>
+      <Text>-12 Hola ¡¡¡¡</Text>
     </View>
   )
 }
