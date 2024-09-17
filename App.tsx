@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { LoginScreen } from "./view/loginScreen";
 import { RegisterScreen } from "./view/registerScreen";
 import Appointments from './view/appointmentsScreen';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { View, StyleSheet } from 'react-native';
 
 
@@ -17,6 +18,11 @@ const Stack = createNativeStackNavigator <RootStackParamList>()
 
 const App = () => {
   return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+          <Appointments/>
+      </NavigationContainer>
+    </SafeAreaProvider>
     // <NavigationContainer>
     //   <Stack.Navigator screenOptions={{
     //     headerShown:false
@@ -31,9 +37,6 @@ const App = () => {
     //     />
     //   </Stack.Navigator>
     // </NavigationContainer>
-    <NavigationContainer>
-        <Appointments/>
-    </NavigationContainer>
   )
 }
 
