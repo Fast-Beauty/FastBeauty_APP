@@ -1,29 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import 'react-native-gesture-handler';
-
-export default function Home() {
+import "react-native-gesture-handler";
+import { Text, View,  } from "react-native";
 
 
-
+export default function HomeScreen() {
     return (
-        <View style={styles.container}>
-            <Text> style={styles.title}FastBeauty</Text>
-            <StatusBar style="auto" />
+        <View>
+            <Text>Home Screen</Text>
         </View>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#f0f0f0',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    title: {
-        fontSize: 32,
-        fontWeight: 'bold',
-        color: '#6F46CEFF',
-    },
-});
+//const styles = StyleSheet.create({});
