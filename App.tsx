@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { LoginScreen } from "./view/loginScreen";
 import { RegisterScreen } from "./view/registerScreen";
+import { HomeScreen } from './view/homeScreen';
 
 
 export type RootStackParamList = {
@@ -27,6 +28,7 @@ const App = () => {
           name='RegisterScreen' 
           component={RegisterScreen} 
         />
+       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )
