@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import Carousel from 'react-native-reanimated-carousel';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {service} from '../api/service.js';
 
 export default function Appointments() {
     const width = Dimensions.get('window').width;
@@ -13,10 +14,24 @@ export default function Appointments() {
         { url: 'https://cdn.pixabay.com/photo/2023/01/19/15/32/squirrel-7729415_1280.jpg', id: 3 },
         { url: 'https://cdn.pixabay.com/photo/2022/12/12/12/58/dog-7651002_1280.jpg', id: 4 }
     ];
+    const [services, setServices] = useState([]);
     const insets = useSafeAreaInsets();
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedService, setSelectedService] = useState('');
     const [selectedEmployee, setSelectedEmployee] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const data = await service();  // Llamar a la API
+            setServices(data);  // Guardar los datos en el estado
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchData();  // Llamar a la función fetchData cuando el componente se monte
+      }, []);
 
     const cita = {
         status: "Espera",
