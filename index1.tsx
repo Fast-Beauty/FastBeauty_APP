@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StatusBar, Text, View, Image, FlatList, TouchableOpacity } from "react-native";
-import styleDetail from '../styles/styleHome';
+import styleDetail from './styles/styleHome';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Para los íconos
 
 // Componentes de estilistas y servicios
