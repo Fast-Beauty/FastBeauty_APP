@@ -1,5 +1,10 @@
 {
   "expo": {
+    "assetBundlePatterns": [
+      "assets/fonts/*",
+      "assets/images/*",
+      "assets/**/*"
+    ],
     "name": "FastBeauty_app",
     "slug": "FastBeauty_app",
     "version": "1.0.0",
@@ -27,7 +32,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

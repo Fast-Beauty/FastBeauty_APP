@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
-import Button from '../components/Buttom';
+import Button from '../components/ButtonOne';
 import InputField from '../components/InputField';
-import firebase from '../api/firebase';
-
+import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'firebase/auth';  // Importa el servicio de autenticación
+import {initializeApp} from 'firebase/app';
+import { firebaseConfig }from '../api/firebaseConfig';
 export const RegisterScreen = ({ navigation }: {navigation : any}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = async () => {
-    try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
-      Alert.alert('Registro exitoso', 'Te has registrado correctamente');
-    } catch (error) {
-      Alert.alert('Error de registro', error.message);
-    }
-  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const handleRegister =  () => {
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log('account created!')
+        const user = userCredential.user;
+        Alert.alert('Usuario creado con exito!')
+        console.log(user)
+      })
+      .catch(error => {
+        console.log(error)
+        Alert.alert(error.message)
+      })
+  }
 
   return (
     <View style={styles.container}>

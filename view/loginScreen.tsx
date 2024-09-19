@@ -1,43 +1,68 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert, ViewComponent } from 'react-native';
-import Buttom from '../components/Buttom';
+import Logo from '@/components/Logo';
+import logoImage from '../assets/images/fast.png';
 import InputField from '../components/InputField';
-import firebase from '../api/firebase';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';  // Importa el servicio de autenticación
+import { initializeApp } from 'firebase/app';
+import { firebaseConfig } from '../api/firebaseConfig';
+import ButtonOne from '../components/ButtonOne';
+import ButtonTwo from '../components/ButtonTwo';
 
-export const LoginScreen = ({ navigation }: {navigation: any}) => {
+export const LoginScreen = ({ navigation }: { navigation: any }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-    const handleLogin = async () => {
-        try {
-            await firebase.auth().sigInWithEmailAndPassword(email, password);
-            Alert.alert('Login exitoso', 'Has iniciado sesion correctamente');
-        } catch (error) {
-            Alert.alert('Error de login', error.message);
-        }
+    const handleLogin = () => {
+        signInWithEmailAndPassword(auth, email, password)
+            // Alert.alert('Login exitoso', 'Has iniciado sesion correctamente');
+            // navigation.navigate('HomeScreen');
+            .then((userCredential) => {
+                console.log('signed in!')
+                const user = userCredential.user;
+                console.log(user)
+                Alert.alert('Login exitoso')
+                navigation.navigate('HomeScreen')
+            })
+            .catch(error => {
+                console.log(error)
+                Alert.alert(error.message)
+            })
     };
 
     return (
+        
         <View style={styles.container}>
-            <Text style={styles.title}>
-                Iniciar sesion
+            <View style={styles.header}>
+            <Logo 
+                logoSource={logoImage} 
+                text="Fast Beauty" 
+                textStyle={{ fontSize: 20, color: 'blue' }} 
+                // containerStyle={{ margin: 20 }} 
+            />
+            </View>
+            <Text>
+                Si eres nuevo registrate ahora mismo 
             </Text>
+            <ButtonTwo title="Registarse" onPress={() => navigation.navigate('RegisterScreen')} />
+            <Text >Email</Text>
             <InputField
                 placeholder="Correo Electrónico"
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
             />
-            <InputField 
+            <Text >Contrasena</Text>
+            <InputField
                 placeholder="Contrasena"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
             />
-            <Buttom title="Entrar" onPress={handleLogin}/>
-            <Text style={styles.link} onPress={() => navigation.navigate('RegisterScreen')}>
-                No tienes una cuenta? <Text style={styles.linkBold}>Registrate</Text>
-            </Text>
+            <Text onPress={() => navigation.navigate('RegisterScreen')} style={styles.linkBold} >Olvido su contrasena?</Text>
+            <ButtonOne title="Iniciar Sesion" onPress={handleLogin} />
         </View>
     );
 };
@@ -47,21 +72,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 40,
         backgroundColor: '#f0f4f7',
-      },
-      title: {
+    },
+    title: {
         fontSize: 28,
         fontWeight: 'bold',
         color: '#333',
         marginBottom: 20,
         textAlign: 'center',
-      },
-      link: {
+    },
+    link: {
         marginTop: 15,
         textAlign: 'center',
         color: '#666',
-      },
-      linkBold: {
+    },
+    linkBold: {
         fontWeight: 'bold',
-        color: '#3498db',
-      },
+        color: '#ffc0cb',
+    },
 });

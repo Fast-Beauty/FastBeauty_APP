@@ -3,30 +3,32 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { LoginScreen } from "./view/loginScreen";
 import { RegisterScreen } from "./view/registerScreen";
+import { HomeScreen } from './view/homeScreen';
 
-
+//holaaa
 export type RootStackParamList = {
   LoginScreen: undefined;
   RegistroScreen: undefined;
   Perfil: { correo_usuario: string };
 }
 
-const Stack = createNativeStackNavigator <RootStackParamList>()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
-        headerShown:false
+        headerShown: false
       }} initialRouteName='LoginScreen'>
-        <Stack.Screen 
-          name='LoginScreen' 
-          component={LoginScreen} 
+        <Stack.Screen
+          name='LoginScreen'
+          component={LoginScreen}
         />
-        <Stack.Screen 
-          name='RegisterScreen' 
-          component={RegisterScreen} 
+        <Stack.Screen
+          name='RegisterScreen'
+          component={RegisterScreen}
         />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )
