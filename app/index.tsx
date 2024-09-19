@@ -23,6 +23,7 @@ const stylists: Stylist[] = [
   { id: '1', name: 'Miguel', occupation: 'Estilista', rating: 4.7, image: require('../assets/images/peluquero.jpg') },
   { id: '2', name: 'Isabella', occupation: 'Estilista', rating: 4.9, image: require('../assets/images/stylist-2.jpg') },
   { id: '3', name: 'Sara', occupation: 'Asesora de Imagen', rating: 4.7, image: require('../assets/images/stylist-3.jpg') },
+  { id: '4', name: 'Liz', occupation: 'Maquilladora', rating: 4.7, image: require('../assets/images/stylist-4.jpg') },
 ];
 
 // Servicios
