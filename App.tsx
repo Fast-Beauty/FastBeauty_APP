@@ -3,40 +3,47 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { LoginScreen } from "./view/loginScreen";
 import { RegisterScreen } from "./view/registerScreen";
-import Appointments from './view/appointmentsScreen';
+
+import { Appointments } from './view/appointmentsScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { View, StyleSheet } from 'react-native';
 
+import { HomeScreen } from './view/homeScreen';
 
+
+//holaaa
 export type RootStackParamList = {
   LoginScreen: undefined;
   RegistroScreen: undefined;
   Perfil: { correo_usuario: string };
 }
 
-const Stack = createNativeStackNavigator <RootStackParamList>()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const App = () => {
   return (
+
     <SafeAreaProvider>
       <NavigationContainer>
           <Appointments/>
       </NavigationContainer>
     </SafeAreaProvider>
-    // <NavigationContainer>
-    //   <Stack.Navigator screenOptions={{
-    //     headerShown:false
-    //   }} initialRouteName='LoginScreen'>
-    //     <Stack.Screen 
-    //       name='LoginScreen' 
-    //       component={LoginScreen} 
-    //     />
-    //     <Stack.Screen 
-    //       name='RegisterScreen' 
-    //       component={RegisterScreen} 
-    //     />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+   
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }} initialRouteName='LoginScreen'>
+        <Stack.Screen
+          name='LoginScreen'
+          component={LoginScreen}
+        />
+        <Stack.Screen
+          name='RegisterScreen'
+          component={RegisterScreen}
+        />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
