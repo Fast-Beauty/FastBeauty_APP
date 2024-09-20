@@ -1,8 +1,17 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import {useFonts} from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 
 const Logo = ({ logoSource, text, textStyle, containerStyle }) => {
+    const [fontsLoaded] = useFonts({
+        Arima: require("../assets/fonts/Arima-Bold.ttf"),
+    })
+    if (!fontsLoaded) {
+        // Puedes mostrar un componente de carga mientras se carga la fuente
+        return <AppLoading />;
+      }
     return (
         <View style={[styles.container, containerStyle]}>
             <Image source={logoSource} style={styles.logo} />
@@ -17,13 +26,14 @@ const styles = StyleSheet.create({
         alignItems: 'center', // Centra verticalmente el logo y el texto
     },
     logo: {
-        width: 40, // Ajusta el tamaño del logo
-        height: 40,
+        width: 50, // Ajusta el tamaño del logo
+        height: 50,
         marginRight: 10, // Espacio entre el logo y el texto
     },
     text: {
-        fontSize: 18, // Tamaño del texto
-        color: 'black', // Color del texto
+        fontSize: 30, // Tamaño del texto
+        fontFamily: "Arima",
+        color: '#ffc0cb',
     },
 });
 
