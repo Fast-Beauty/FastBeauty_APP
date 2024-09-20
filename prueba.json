@@ -1,0 +1,56 @@
+[
+    {
+        "id": "1",
+        "name": "Corte",
+        "description": "corte para hombre",
+        "price": "23.000",
+        "time": "35 ",
+        "branch_office_id": "1",
+        "url": "service-corte"
+    },
+    {
+        "id": "2",
+        "name": "Depilación cejas",
+        "description": "Depilación cejas con hilo",
+        "price": "20.000",
+        "time": "35",
+        "branch_office_id": "1",
+        "url": "service-cejas"
+    },
+    {
+        "id": "3",
+        "name": "Depilacion",
+        "description": "depilacion piernas",
+        "price": "30.000",
+        "time": "30",
+        "branch_office_id": "1",
+        "url": "service-depilacion"
+    },
+    {
+        "id": "4",
+        "name": "Masaje",
+        "description": "lorem ipsum",
+        "price": "80.000",
+        "time": "110",
+        "branch_office_id": "1",
+        "url": "service-masaje"
+    },
+    {
+        "id": "5",
+        "name": "Manicure",
+        "description": "manicure",
+        "price": "50.000",
+        "time": "60",
+        "branch_office_id": "1",
+        "url": "service-manicure"
+    },
+    {
+        "id": "7",
+        "name": "Tinturado",
+        "description": "lorem ipsum",
+        "price": "100.000",
+        "time": "120",
+        "branch_office_id": "1",
+        "url": "service-tinturado"
+    }
+]

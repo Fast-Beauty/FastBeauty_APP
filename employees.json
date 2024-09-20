@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "name": "Estilista 1",
+        "url": "../assets/images/employees/estilista-1.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Estilista 2",
+        "url": "../assets/images/employees/estilista-2.jpg"
+    },
+    {
+        "id": "3",
+        "name": "Estilista 3",
+        "url": "../assets/images/employees/estilista-3.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Estilista 3",
+        "url": "../assets/images/employees/estilista-4.jpg"
+    }
+]

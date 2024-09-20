@@ -1,0 +1,29 @@
+[
+    {
+        "id": "1",
+        "status": "ESPERA",
+        "date": "2024-06-21 00:00:00",
+        "hora": "23:00:00",
+        "clients_id": "2",
+        "Employees_id": "6",
+        "services_id": "2"
+    },
+    {
+        "id": "2",
+        "status": "ESPERA",
+        "date": "2024-06-29 00:00:00",
+        "hora": "15:00:00",
+        "clients_id": "2",
+        "Employees_id": "6",
+        "services_id": "4"
+    },
+    {
+        "id": "3",
+        "status": "ESPERA",
+        "date": "2024-06-29 00:00:00",
+        "hora": "12:00:00",
+        "clients_id": "2",
+        "Employees_id": "5",
+        "services_id": "3"
+    }
+]
