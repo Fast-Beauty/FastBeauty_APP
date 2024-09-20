@@ -4,6 +4,7 @@ import styleDetail from '../styles/styleHome';
 import ButtonOne from '../components/ButtonOne';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Para los íconos
 
+
 // Componentes de estilistas y servicios
 interface Stylist {
   id: string;
@@ -53,7 +54,10 @@ const StylistCard: React.FC<{ stylist: Stylist }> = ({ stylist }) => (
   </View>
 );
 
-export const HomeScreen: React.FC = () => {
+export const HomeScreen = ({navigation}: { navigation: any }) => {
+  const handleNavigate = () => {
+    navigation.navigate('appointmenstScreen');
+  };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBar barStyle="light-content" translucent={true} backgroundColor="transparent" />
@@ -93,7 +97,7 @@ export const HomeScreen: React.FC = () => {
           horizontal
         />
       </View>
-      <View style={styleDetail.calendario}><ButtonOne title="Calendario"  /></View>
+      <View style={styleDetail.calendario}><ButtonOne title="Agendar"  onPress={handleNavigate}/></View>
       {/* Barra de navegación inferior */}
       <View style={styleDetail.bottomNav}>
         <Icon name="home" size={24} color="black" />

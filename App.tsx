@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { LoginScreen } from "./view/loginScreen";
 import { RegisterScreen } from "./view/registerScreen";
-
 import { Appointments } from './view/appointmentsScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { View, StyleSheet } from 'react-native';
@@ -25,25 +24,24 @@ const App = () => {
 
     <SafeAreaProvider>
       <NavigationContainer>
-          <Appointments/>
+        <Stack.Navigator screenOptions={{
+          headerShown: false
+        }} initialRouteName='LoginScreen'>
+          <Stack.Screen
+            name='LoginScreen'
+            component={LoginScreen}
+          />
+          <Stack.Screen
+            name='RegisterScreen'
+            component={RegisterScreen}
+          />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+          <Stack.Screen name="appointmenstScreen" component={Appointments}/>
+        </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
-   
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }} initialRouteName='LoginScreen'>
-        <Stack.Screen
-          name='LoginScreen'
-          component={LoginScreen}
-        />
-        <Stack.Screen
-          name='RegisterScreen'
-          component={RegisterScreen}
-        />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+
+
   )
 }
 
@@ -53,7 +51,7 @@ const App = () => {
 //       justifyContent: 'center',
 //       alignItems: 'center'
 //   },
-  
+
 // });
 
 export default App

@@ -6,7 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { service } from '../api/service.js';
 
-export default function Appointments() {
+export const  Appointments = ({navigation}) => {
 
     const [servicios, setServices] = useState([]);
     const [employees, setEmployees] = useState([]);
