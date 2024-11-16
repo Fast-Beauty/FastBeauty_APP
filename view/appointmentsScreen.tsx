@@ -17,68 +17,103 @@ export const Appointments = ({ navigation }) => {
     };
 
     const [servicios, setServices] = useState([]);
+    const [serviceImage, setServiceImage] = useState([]);
     const [employees, setEmployees] = useState([]);
+    const [employeesImages, setEmployeesImages] = useState([]);
+    const [serviceMerged, setServiceMerged] = useState([]);
+    const [employeesMerged, setEmployeesMerged] = useState([]);
 
-    const fetchService = async () => {
-        try {
-            const response = await fetch('https://apiappfastbeauty-default-rtdb.firebaseio.com/services.json');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+    useEffect(() => {
+
+        const fetchService = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/services/index');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setServices(data.services);
+            } catch (error) {
+                console.error(error.message);
             }
-            const data = await response.json();
-            setServices(data);
-        } catch (error) {
-            console.error(error.message);
-        }
-    };
-    const fetchEmployees = async () => {
-        try {
-            const response = await fetch('https://apiappfastbeauty-default-rtdb.firebaseio.com/employees.json');
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+        };
+
+        const fetchServiceImage = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/servicesimages/index');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setServiceImage(data.services_images);
+            } catch (error) {
+                console.error(error.message);
             }
-            const data = await response.json();
-            setEmployees(data);
-        } catch (error) {
-            console.error(error.message);
         }
-    };
+
+        const fetchEmployees = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/employees/index');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setEmployees(data.employees);
+            } catch (error) {
+                console.error(error.message);
+            }
+        };
+
+        const fetchEmployeesImages = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/employeesimages/index');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setEmployeesImages(data.employees_images);
+            } catch (error) {
+                console.error(error.message);
+            }
+        };
+
+        fetchService();
+        fetchServiceImage();
+        fetchEmployees();
+        fetchEmployeesImages();
+    }, []);
+
+    useEffect(() => {
+        const fetchMerge = () => {
+            const merged = servicios.map(servicio => {
+                const filter = serviceImage.filter(serviceIm => serviceIm.services_id === servicio.id);
+        
+                return {
+                    ...servicio,
+                    imagen: `data:image/jpeg;base64,${filter[0].imagen}`
+                }
+            });
+            setServiceMerged(merged);
+        }
+        fetchMerge();
+    }, [serviceImage]);
+    
+    useEffect(() => {
+        const fetchMerge = () => {
+            const merged = employees.map(employee => {
+                const filter = employeesImages.filter(employeeIm => employeeIm.Employees_id === employee.id);
+                return {
+                    ...employee,
+                    imagen: `data:image/jpeg;base64,${filter[0].imagen}`
+                }
+            });
+            setEmployeesMerged(merged);
+        }
+        fetchMerge();
+    }, [employeesImages]);
 
 
     const width = Dimensions.get('window').width;
-
-    const imagesService = {
-        "service-cejas": require('../assets/images/services/service-cejas.jpg'),
-        "service-corte": require('../assets/images/services/service-corte.jpg'),
-        "service-depilacion": require('../assets/images/services/service-depilacion.jpg'),
-        "service-manicure": require('../assets/images/services/service-manicure.jpg'),
-        "service-maquillaje": require('../assets/images/services/service-maquillaje.jpg'),
-        "service-masaje": require('../assets/images/services/service-masaje.jpg'),
-        "service-tinturado": require('../assets/images/services/service-tinturado.jpg'),
-    };
-    const imagesEmployees = {
-        "estilista-1": require('../assets/images/employees/estilista-1.jpg'),
-        "estilista-2": require('../assets/images/employees/estilista-2.jpg'),
-        "estilista-3": require('../assets/images/employees/estilista-3.jpg'),
-        "estilista-4": require('../assets/images/employees/estilista-4.jpg'),
-        "estilista-5": require('../assets/images/employees/estilista-5.jpg'),
-    };
-    // const servicios = [
-    //     { url: require('../assets/images/services/service-cejas.jpg'), id: 1, name: 'Cejas' },
-    //     { url: require('../assets/images/services/service-corte.jpg'), id: 2, name: 'Corte' },
-    //     { url: require('../assets/images/services/service-depilacion.jpg'), id: 3, name: 'Depilación' },
-    //     { url: require('../assets/images/services/service-manicure.jpg'), id: 4, name: 'Manicure' },
-    //     { url: require('../assets/images/services/service-maquillaje.jpg'), id: 5, name: 'Maquillaje' },
-    //     { url: require('../assets/images/services/service-masaje.jpg'), id: 6, name: 'Masaje' },
-    //     { url: require('../assets/images/services/service-tinturado.jpg'), id: 7, name: 'Tinturado' },
-    // ];
-    // const employees = [
-    //     { url: require('../assets/images/employees/estilista-1.jpg'), id: 1, name: 'Estilista 1' },
-    //     { url: require('../assets/images/employees/estilista-2.jpg'), id: 2, name: 'Estilista 2' },
-    //     { url: require('../assets/images/employees/estilista-3.jpg'), id: 3, name: 'Estilista 3' },
-    //     { url: require('../assets/images/employees/estilista-4.jpg'), id: 4, name: 'Estilista 4' },
-    //     { url: require('../assets/images/employees/estilista-5.jpg'), id: 5, name: 'Estilista 5' },
-    // ];
 
     const insets = useSafeAreaInsets();
     const [selectedDate, setSelectedDate] = useState('');
@@ -109,7 +144,7 @@ export const Appointments = ({ navigation }) => {
             return;
         }
         try {
-            const response = await fetch('https://apiappfastbeauty-default-rtdb.firebaseio.com/appointments.json', {
+            const response = await fetch('http://localhost:8080/appointments/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -128,12 +163,6 @@ export const Appointments = ({ navigation }) => {
         }
     }
 
-    useEffect(() => {
-        fetchService();
-        fetchEmployees();
-    }, []);
-
-
     return (
         <View style={[styles.container, { paddingTop: insets.top }]}>
             <ScrollView>
@@ -147,16 +176,16 @@ export const Appointments = ({ navigation }) => {
                         height={width / 2}
                         autoPlay={false}
                         autoPlayInterval={3000}
-                        data={servicios}
+                        data={serviceMerged}
                         mode='parallax'
                         scrollAnimationDuration={1000}
                         onSnapToItem={(index) => console.log('current index:', index)}
                         renderItem={({ index }) => (
-                            <TouchableOpacity style={{ flex: 1 }} onPress={() => handleService(servicios[index])}>
-                                <Text style={{ fontSize: 22, textAlign: 'center' }}>{servicios[index].name}</Text>
+                            <TouchableOpacity style={{ flex: 1 }} onPress={() => handleService(serviceMerged[index])}>
+                                <Text style={{ fontSize: 22, textAlign: 'center' }}>{serviceMerged[index].name}</Text>
                                 <View style={[styles.carouselItem]}>
                                     <Image
-                                        source={imagesService[servicios[index].url]}
+                                        source={{uri: serviceMerged[index].imagen}}
                                         style={styles.image}
                                         resizeMode="cover"
                                     />
@@ -174,16 +203,16 @@ export const Appointments = ({ navigation }) => {
                         height={width * 1.5}
                         autoPlay={false}
                         autoPlayInterval={3000}
-                        data={employees}
+                        data={employeesMerged}
                         mode='parallax'
                         scrollAnimationDuration={1000}
                         onSnapToItem={(index) => console.log('current index:', index)}
                         renderItem={({ index }) => (
-                            <TouchableOpacity style={{ flex: 1 }} onPress={() => handleEmployee(employees[index])}>
-                                <Text style={{ fontSize: 22, textAlign: 'center' }}>{employees[index].name}</Text>
+                            <TouchableOpacity style={{ flex: 1 }} onPress={() => handleEmployee(employeesMerged[index])}>
+                                <Text style={{ fontSize: 22, textAlign: 'center' }}>{employeesMerged[index].name}</Text>
                                 <View style={styles.carouselItem}>
                                     <Image
-                                        source={imagesEmployees[employees[index].url]}
+                                        source={{uri: employeesMerged[index].imagen}}
                                         style={styles.image}
                                         resizeMode="cover"
                                     />
